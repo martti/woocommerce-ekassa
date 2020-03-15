@@ -2,7 +2,6 @@
 	'use strict';
 
 	/**
-	oo
 	 * All of the code for your admin-facing JavaScript source
 	 * should reside in this file.
 	 *
@@ -30,18 +29,18 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-   $(document).ready(function () {
-		 $("#date_begin").datepicker({
-				 dateFormat: 'dd.mm.yy',
-				 changeMonth: true,
-				 changeYear: true,
-				 maxDate: 0,
-				 onSelect: function (date) {
-						var date = $('#date_begin').datepicker('getDate');
-						$('#date_begin').datepicker('setDate', date);
-						$('#date_begin').datepicker('option', 'minDate', date);
-				 }
-		 });
-   });
+	$(document).ready(function () {
+		$("#date_begin").datepicker({
+			dateFormat: 'dd.mm.yy',
+			changeMonth: true,
+			changeYear: true,
+			maxDate: 0,
+			onSelect: function (date) {
+				var date = $('#date_begin').datepicker('getDate');
+				$('#date_begin').datepicker('setDate', date);
+				$('#date_begin').datepicker('option', 'minDate', date);
+			}
+		});
+	});
 
 })( jQuery );
