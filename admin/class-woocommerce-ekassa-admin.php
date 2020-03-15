@@ -57,7 +57,7 @@ class Woocommerce_Ekassa_Admin {
 	}
 
 	public function setup_menu() {
-		add_submenu_page( 'edit.php?post_type=product', 'E-kassa.fi', 'E-kassa.fi', 'administrator', $this->plugin_name, array($this, 'display_search_page' ));
+		add_submenu_page( 'edit.php?post_type=product', 'E-kassa.fi', 'E-kassa.fi', 'administrator', $this->plugin_name, array( $this, 'display_search_page' ) );
 	}
 
 	public function display_search_page(){
@@ -65,32 +65,32 @@ class Woocommerce_Ekassa_Admin {
 	}
 
 	public function export_csv() {
-		if (isset($_GET["wcekassa-download-csv"])) {
-			$date_begin = isset($_GET['date_begin']) ? sanitize_text_field($_GET['date_begin']) : date("d.m.Y");
-			$woo_products = $this->list_products($date_begin);
+		if ( isset( $_GET["wcekassa-download-csv"] ) ) {
+			$date_begin = isset( $_GET['date_begin'] ) ? sanitize_text_field( $_GET['date_begin'] ) : date( "d.m.Y" );
+			$woo_products = $this->list_products( $date_begin );
 
-			$this->send_headers('ekassa-export-' . time() . '.csv');
-			header('Content-Transfer-Encoding: binary');
-			$csvcontent = $this->csv($woo_products);
-			if (function_exists('mb_strlen')) {
-				$size = mb_strlen($csvcontent, '8bit');
+			$this->send_headers( 'ekassa-export-' . time() . '.csv' );
+			header( 'Content-Transfer-Encoding: binary' );
+			$csvcontent = $this->csv( $woo_products );
+			if ( function_exists( 'mb_strlen' ) ) {
+				$size = mb_strlen( $csvcontent, '8bit' );
 			} else {
-				$size = strlen($csvcontent);
+				$size = strlen( $csvcontent );
 			}
-			header('Content-Length: ' . $size);
+			header( 'Content-Length: ' . $size );
 			echo $csvcontent;
 			die();
 		}
 	}
 
-	function send_headers($filename) {
-		ignore_user_abort(true);
-		wc_set_time_limit(0);
+	function send_headers( $filename ) {
+		ignore_user_abort( true );
+		wc_set_time_limit( 0 );
 		wc_nocache_headers();
-		header('Content-Type: text/csv; charset=utf-8');
-		header('Content-Disposition: attachment; filename=' . $filename);
-		header('Pragma: no-cache');
-		header('Expires: 0');
+		header( 'Content-Type: text/csv; charset=utf-8' );
+		header( 'Content-Disposition: attachment; filename=' . $filename );
+		header( 'Pragma: no-cache' );
+		header( 'Expires: 0' );
 	}
 
 	public function implode_values( $values ) {
