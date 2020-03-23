@@ -14,6 +14,8 @@ Export WooCommerce products to e-kassa.fi
 
 == Installation ==
 
+1. Create installation package: git archive --worktree-attributes -v --format zip -o ../woocommerce-ekassa.zip HEAD
+
 == Frequently Asked Questions ==
 
 == Screenshots ==
